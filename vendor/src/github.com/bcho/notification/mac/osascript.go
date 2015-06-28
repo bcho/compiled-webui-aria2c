@@ -12,7 +12,7 @@ func OSAScriptDisplay(title, content, icon string) error {
 	c := exec.Command(
 		"/usr/bin/osascript",
 		"-e",
-		fmt.Sprintf(tmpl, title, content),
+		fmt.Sprintf(tmpl, content, title),
 	)
 	return c.Run()
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os/exec"
+	"time"
 )
 
 var (
@@ -35,10 +36,18 @@ func serveAria2RPC() {
 	}
 }
 
+func serveCheck() {
+	c := time.Tick(30 * time.Second)
+	for _ = range c {
+		checkError()
+	}
+}
+
 func main() {
 	flag.Parse()
 
 	go serveAria2RPC()
+	go serveCheck()
 	serveHTTP()
 }
 
